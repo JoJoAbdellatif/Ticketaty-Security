@@ -12,7 +12,7 @@ const limiter = rateLimit({
 })
 
 app.get('/' , isIPBlocked , limiter , (req , res) => {
-    res.send(req.ip)
+    res.send("alooooooo")
     //axios call to actual endpoints except pending
 })
 
