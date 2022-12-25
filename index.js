@@ -7,7 +7,10 @@ const { reCAPTCHA } = require('./middlewares/reCAPTCHA');
 const app = express();
 
 app.get('/' , isIPBlocked , rateLimiter , (req , res) => {
-    res.send("hello world")
+    const ip = req.connection.remoteAddress;
+
+    res.send(ip)
+
     //axios call to actual endpoints except pending
 })
 
