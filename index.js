@@ -9,7 +9,7 @@ const app = express();
 app.get('/' , isIPBlocked , rateLimiter , (req , res) => {
     const ip = req.connection.remoteAddress;
 
-    res.send(ip)
+    console.log(ip)
 
     //axios call to actual endpoints except pending
 })
