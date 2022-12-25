@@ -17,8 +17,9 @@ const reCAPTCHA = (req, res, next) => {
             return res.json({'success' : false , 'msg' : 'Failed captcha verification'})
         }
 
-        next();
     })
+
+    next()
 }
 
 module.exports = {reCAPTCHA};
