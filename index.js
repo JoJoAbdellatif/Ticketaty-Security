@@ -7,7 +7,7 @@ const app = express();
 
 const limiter = rateLimit({
     windowMs: 1000 * 60 * 15,
-    max : 5,
+    max : 100,
     message : "ya ro7 ommak"
 })
 
