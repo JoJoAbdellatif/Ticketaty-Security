@@ -1,16 +1,18 @@
 const express = require('express');
-const { rateLimiter } = require('./middlewares/rateLimiter');
+const rateLimit = require('express-rate-limit');
 const { isIPBlocked } = require('./middlewares/IPBlocking');
-const { reCAPTCHA } = require('./middlewares/reCAPTCHA');
 
 
 const app = express();
 
-app.get('/' , isIPBlocked , rateLimiter , (req , res) => {
-    const ip = req.connection.remoteAddress;
-    res.send("aloooooooooooooo")
-    console.log(ip)
+const limiter = rateLimit({
+    windowMs: 1000 * 60 * 15,
+    max : 5,
+    message : "ya ro7 ommak"
+})
 
+app.get('/' , isIPBlocked , limiter , (req , res) => {
+    res.send(req.ip)
     //axios call to actual endpoints except pending
 })
 
