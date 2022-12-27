@@ -7,6 +7,7 @@ const asyncHandler = require('express-async-handler')
 
 
 const app = express();
+app.use(express.json());
 
 const limiter = rateLimit({
     windowMs: 1000 * 60 * 15,
@@ -37,7 +38,7 @@ app.get('/matches/:id' , isIPBlocked , limiter , corsHeaders , asyncHandler(asyn
 app.get('/search/:team' , isIPBlocked , limiter , corsHeaders , asyncHandler(async (req , res) => {
     const par = req.params.team
     const url = "https://ticketaty-shop.vercel.app/search/" + par
-    await axios.get(url , { 
+    await axios.get(url , {
         headers: { "Accept-Encoding": "gzip,deflate,compress" }
     })
     .then((response) => (res.send(response.data)))
@@ -45,9 +46,10 @@ app.get('/search/:team' , isIPBlocked , limiter , corsHeaders , asyncHandler(asy
     //axios call to actual endpoints except pending
 }))
 
-app.get('/reservation' , isIPBlocked , limiter , corsHeaders , asyncHandler(async (req , res) => {
-    const url = "https://ticketaty-reservations.vercel.app/api/v1/health"
-    await axios.get(url , { 
+app.post('/reservation' , isIPBlocked , limiter , corsHeaders , asyncHandler(async (req , res) => {
+    req.body;
+    const url = "http://localhost:5000/api/v1/reservation"
+    await axios.post(url , req.body , { 
         headers: { "Accept-Encoding": "gzip,deflate,compress" }
     })
     .then((response) => (res.send(response.data)))
@@ -55,6 +57,6 @@ app.get('/reservation' , isIPBlocked , limiter , corsHeaders , asyncHandler(asyn
     //axios call to actual endpoints except pending
 }))
 
-app.listen('3000', () => {
-    console.log('app listening on port 3000')
+app.listen('4000', () => {
+    console.log('app listening on port 4000')
 })
