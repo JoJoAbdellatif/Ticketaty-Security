@@ -8,7 +8,7 @@ const app = express();
 const limiter = rateLimit({
     windowMs: 1000 * 60 * 15,
     max : 100,
-    message : "ya ro7 ommak"
+    message : "Too many requests, please try later"
 })
 
 app.get('/' , isIPBlocked , limiter , (req , res) => {
