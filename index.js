@@ -48,7 +48,7 @@ app.get('/search/:team' , isIPBlocked , limiter , corsHeaders , asyncHandler(asy
 
 app.post('/reservation' , isIPBlocked , limiter , corsHeaders , asyncHandler(async (req , res) => {
     req.body;
-    const url = "http://localhost:5000/api/v1/reservation"
+    const url = "https://ticketaty-reservations.vercel.app/api/v1/reservation"
     await axios.post(url , req.body , { 
         headers: { "Accept-Encoding": "gzip,deflate,compress" }
     })
