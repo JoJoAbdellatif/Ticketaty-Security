@@ -48,12 +48,12 @@ app.get('/search/:team' , isIPBlocked , limiter , corsHeaders , asyncHandler(asy
 
 app.post('/reservation' , isIPBlocked , limiter , corsHeaders , asyncHandler(async (req , res) => {
     req.body;
-    const url = "https://ticketaty-reservations.vercel.app/api/v1/reservation"
+    const url = "https://ticketaty-reservations.vercel.app/api/reservation"
     await axios.post(url , req.body , { 
         headers: { "Accept-Encoding": "gzip,deflate,compress" }
     })
     .then((response) => (res.send(response.data)))
-    .catch((e) => {res.send(e)})
+    .catch((e) => {res.status(400).send(e)})
     //axios call to actual endpoints except pending
 }))
 
