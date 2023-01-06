@@ -59,7 +59,7 @@ app.post('/reservation' , isIPBlocked , limiter , corsHeaders , asyncHandler(asy
 
 app.get('/ticket/:email' , isIPBlocked , limiter , corsHeaders , asyncHandler(async (req , res) => {
     const par = req.params.email
-    const url = "https://ticketaty-shop.vercel.app/ticket/:email" + par
+    const url = "https://ticketaty-shop.vercel.app/ticket/" + par
     await axios.get(url , {
         headers: { "Accept-Encoding": "gzip,deflate,compress" }
     })
