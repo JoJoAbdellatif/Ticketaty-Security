@@ -57,6 +57,21 @@ app.post('/reservation' , isIPBlocked , limiter , corsHeaders , asyncHandler(asy
     //axios call to actual endpoints except pending
 }))
 
+app.get('/ticket/:email' , isIPBlocked , limiter , corsHeaders , asyncHandler(async (req , res) => {
+    const par = req.params.email
+    const url = "https://ticketaty-shop.vercel.app/ticket/:email" + par
+    await axios.get(url , {
+        headers: { "Accept-Encoding": "gzip,deflate,compress" }
+    })
+    .then((response) => (res.send(response.data)))
+    .catch((e) => {res.send(e)})
+    //axios call to actual endpoints except pending
+}))
+
+app.options('/api/reservation',corsHeaders, async (req, res) => {
+    res.status(200).json({message: 'ok'});
+})
+
 app.listen('4000', () => {
     console.log('app listening on port 4000')
 })
