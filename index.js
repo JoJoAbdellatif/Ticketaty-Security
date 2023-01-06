@@ -68,7 +68,7 @@ app.get('/ticket/:email' , isIPBlocked , limiter , corsHeaders , asyncHandler(as
     //axios call to actual endpoints except pending
 }))
 
-app.options('/api/reservation',corsHeaders, async (req, res) => {
+app.options('/reservation',corsHeaders, async (req, res) => {
     res.status(200).json({message: 'ok'});
 })
 
